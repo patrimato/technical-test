@@ -1,0 +1,153 @@
+.pdp-container {
+  padding: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pdp-back {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pdp-back:hover {
+  color: var(--accent-dark);
+}
+
+.pdp-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+.pdp-image {
+  width: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #f9f9f9;
+  padding: 32px;
+}
+
+.pdp-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.pdp-price {
+  font-size: 24px;
+  color: var(--accent-dark);
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.pdp-price--unavailable {
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.pdp-specs {
+  margin-bottom: 24px;
+}
+
+.pdp-specs h2 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pdp-specs ul {
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.pdp-specs li {
+  padding: 10px 16px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.pdp-specs li:last-child {
+  border-bottom: none;
+}
+
+.pdp-options {
+  margin-bottom: 24px;
+}
+
+.pdp-options h2 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pdp-options p {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+}
+
+.pdp-option-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.pdp-option-btn {
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.pdp-option-btn:hover {
+  border-color: var(--accent-dark);
+}
+
+.pdp-option-btn--selected {
+  border-color: var(--accent-dark);
+  background: var(--accent);
+  font-weight: 600;
+}
+
+.pdp-add-btn {
+  width: 100%;
+  padding: 16px;
+  background: var(--accent);
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.pdp-add-btn:hover {
+  background: var(--accent-dark);
+}
+
+@media (max-width: 768px) {
+  .pdp-layout {
+    grid-template-columns: 1fr;
+  }
+}
