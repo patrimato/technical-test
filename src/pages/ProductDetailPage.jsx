@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { getProductDetail, addToCart } from '../api/productApi'
 import { useCart } from '../context/CartContext'
+import { formatPrice } from '../utils/formatPrice'
 import './ProductDetailPage.css'
 
 function ProductDetailPage() {
@@ -49,7 +50,7 @@ function ProductDetailPage() {
         <div>
           <h1 className="pdp-title">{product.brand} {product.model}</h1>
           <p className={`pdp-price ${!product.price ? 'pdp-price--unavailable' : ''}`}>
-            {product.price ? `${Number(product.price)} €` : 'Price not available'}
+            {formatPrice(product.price)}
           </p>
 
           <div className="pdp-specs">

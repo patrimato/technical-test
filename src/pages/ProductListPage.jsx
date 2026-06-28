@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getProducts } from '../api/productApi'
+import { formatPrice } from '../utils/formatPrice'
 import './ProductListPage.css'
 
 const PRODUCTS_PER_PAGE = 8
@@ -63,7 +64,7 @@ function ProductListPage() {
             <img src={product.imgUrl} alt={`${product.brand} ${product.model}`} />
             <p>{product.brand}</p>
             <p>{product.model}</p>
-            <p>{product.price ? `${Number(product.price)} €` : 'Price not available'}</p>
+            <p>{formatPrice(product.price)}</p>
           </div>
         ))}
       </div>
