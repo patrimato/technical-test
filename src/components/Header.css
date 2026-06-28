@@ -1,0 +1,44 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  z-index: 100;
+}
+
+.header__logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+.header__logo:hover {
+  color: var(--accent-dark);
+}
+
+.header__breadcrumb {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.header__breadcrumb a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.header__breadcrumb a:hover {
+  color: var(--accent-dark);
+}
+
+.header__cart {
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--accent);
+  padding: 8px 16px;
+  border-radius: 20px;
+}

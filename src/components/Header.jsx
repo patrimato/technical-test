@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
+import './Header.css'
 
 function Header() {
   const location = useLocation()
@@ -7,17 +8,15 @@ function Header() {
   const { cartCount } = useCart()
 
   return (
-    <header>
-      <Link to="/">technical-test</Link>
+    <header className="header">
+      <Link to="/" className="header__logo">MobileStore</Link>
 
-      <nav>
-        <span>
-          <Link to="/">Home</Link>
-          {!isHome && <span> / Product Detail</span>}
-        </span>
+      <nav className="header__breadcrumb">
+        <Link to="/">Home</Link>
+        {!isHome && <span> / Product Detail</span>}
       </nav>
 
-      <span>Cart: {cartCount}</span>
+      <span className="header__cart">🛒 {cartCount}</span>
     </header>
   )
 }
