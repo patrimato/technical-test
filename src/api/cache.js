@@ -18,7 +18,7 @@ export function getFromCache(key) {
 export function saveToCache(key, data) {
   const entry = {
     data,
-    timestamp: Date.now()
+    timestamp: Date.now(),
   }
   localStorage.setItem(key, JSON.stringify(entry))
 }

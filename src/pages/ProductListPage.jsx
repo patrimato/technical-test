@@ -16,17 +16,17 @@ function ProductListPage() {
 
   useEffect(() => {
     getProducts()
-      .then(data => {
+      .then((data) => {
         setProducts(data)
         setIsLoading(false)
       })
-      .catch(err => {
+      .catch((err) => {
         setError('Could not load products. Please try again.')
         setIsLoading(false)
       })
   }, [])
 
-  const filteredProducts = products.filter(product =>
+  const filteredProducts = products.filter((product) =>
     `${product.brand} ${product.model}`
       .toLowerCase()
       .includes(search.toLowerCase())
@@ -57,11 +57,20 @@ function ProductListPage() {
       />
 
       <div className="plp-grid">
-        {paginatedProducts.map(product => (
-          <div key={product.id} className="plp-card"
-          onClick={() => navigate(`/product/${product.id}`, { state: { name: `${product.brand} ${product.model}` } 
-          })}>
-            <img src={product.imgUrl} alt={`${product.brand} ${product.model}`} />
+        {paginatedProducts.map((product) => (
+          <div
+            key={product.id}
+            className="plp-card"
+            onClick={() =>
+              navigate(`/product/${product.id}`, {
+                state: { name: `${product.brand} ${product.model}` },
+              })
+            }
+          >
+            <img
+              src={product.imgUrl}
+              alt={`${product.brand} ${product.model}`}
+            />
             <p>{product.brand}</p>
             <p>{product.model}</p>
             <p>{formatPrice(product.price)}</p>
@@ -71,7 +80,7 @@ function ProductListPage() {
 
       <div className="plp-pagination">
         <button
-          onClick={() => setCurrentPage(prev => prev - 1)}
+          onClick={() => setCurrentPage((prev) => prev - 1)}
           disabled={currentPage === 1}
         >
           ←
@@ -87,8 +96,13 @@ function ProductListPage() {
         {currentPage > 3 && <span>...</span>}
 
         {Array.from({ length: totalPages }, (_, i) => i + 1)
-          .filter(page => page !== 1 && page !== totalPages && Math.abs(page - currentPage) <= 1)
-          .map(page => (
+          .filter(
+            (page) =>
+              page !== 1 &&
+              page !== totalPages &&
+              Math.abs(page - currentPage) <= 1
+          )
+          .map((page) => (
             <button
               key={page}
               onClick={() => setCurrentPage(page)}
@@ -108,7 +122,7 @@ function ProductListPage() {
         </button>
 
         <button
-          onClick={() => setCurrentPage(prev => prev + 1)}
+          onClick={() => setCurrentPage((prev) => prev + 1)}
           disabled={currentPage === totalPages}
         >
           →

@@ -35,7 +35,7 @@ describe('ProductListPage', () => {
     )
     await screen.findByText('iPhone 14')
     fireEvent.change(screen.getByPlaceholderText('Search by brand or model'), {
-      target: { value: 'Samsung' }
+      target: { value: 'Samsung' },
     })
     expect(screen.queryByText('iPhone 14')).not.toBeInTheDocument()
     expect(screen.getByText('Galaxy S23')).toBeInTheDocument()
@@ -43,12 +43,12 @@ describe('ProductListPage', () => {
 
   it('navigates to product detail when clicking a product', async () => {
     render(
-        <MemoryRouter>
+      <MemoryRouter>
         <Routes>
-            <Route path="/" element={<ProductListPage />} />
-            <Route path="/product/:id" element={<div>Product Detail</div>} />
+          <Route path="/" element={<ProductListPage />} />
+          <Route path="/product/:id" element={<div>Product Detail</div>} />
         </Routes>
-        </MemoryRouter>
+      </MemoryRouter>
     )
     await screen.findByText('iPhone 14')
     fireEvent.click(screen.getByText('iPhone 14'))

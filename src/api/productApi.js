@@ -41,7 +41,7 @@ export async function addToCart({ id, colorCode, storageCode }) {
     const response = await fetch(`${BASE_URL}/api/cart`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id, colorCode, storageCode })
+      body: JSON.stringify({ id, colorCode, storageCode }),
     })
     if (!response.ok) throw new Error(`HTTP error: ${response.status}`)
     return response.json()

@@ -20,9 +20,15 @@ const mockProduct = {
   dimentions: '146.7 x 71.5 x 7.8 mm',
   weight: '172',
   options: {
-    colors: [{ code: 1, name: 'Black' }, { code: 2, name: 'White' }],
-    storages: [{ code: 1, name: '128 GB' }, { code: 2, name: '256 GB' }]
-  }
+    colors: [
+      { code: 1, name: 'Black' },
+      { code: 2, name: 'White' },
+    ],
+    storages: [
+      { code: 1, name: '128 GB' },
+      { code: 2, name: '256 GB' },
+    ],
+  },
 }
 
 vi.mock('../api/productApi')
@@ -71,13 +77,16 @@ describe('ProductDetailPage', () => {
       expect(productApi.addToCart).toHaveBeenCalledWith({
         id: '1',
         colorCode: 1,
-        storageCode: 1
+        storageCode: 1,
       })
     })
   })
 
   it('shows price not available when price is missing', async () => {
-    productApi.getProductDetail.mockResolvedValue({ ...mockProduct, price: null })
+    productApi.getProductDetail.mockResolvedValue({
+      ...mockProduct,
+      price: null,
+    })
     renderDetail()
     expect(await screen.findByText('Price not available')).toBeInTheDocument()
   })

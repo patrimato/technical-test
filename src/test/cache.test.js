@@ -20,7 +20,7 @@ describe('cache', () => {
     const data = [{ id: '1', brand: 'Apple' }]
     const expiredEntry = {
       data,
-      timestamp: Date.now() - 2 * 60 * 60 * 1000
+      timestamp: Date.now() - 2 * 60 * 60 * 1000,
     }
     localStorage.setItem('products', JSON.stringify(expiredEntry))
     expect(getFromCache('products')).toBeNull()

@@ -9,10 +9,10 @@ export function CartProvider({ children }) {
   })
 
   const updateCartCount = () => {
-    setCartCount(prev => {
-        const newCount = prev + 1
-        localStorage.setItem('cartCount', newCount)
-        return newCount
+    setCartCount((prev) => {
+      const newCount = prev + 1
+      localStorage.setItem('cartCount', newCount)
+      return newCount
     })
   }
 

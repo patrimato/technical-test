@@ -10,7 +10,9 @@ function Header() {
 
   return (
     <header className="header">
-      <Link to="/" className="header__logo">MobileStore</Link>
+      <Link to="/" className="header__logo">
+        MobileStore
+      </Link>
 
       <nav className="header__breadcrumb">
         <Link to="/">Home</Link>

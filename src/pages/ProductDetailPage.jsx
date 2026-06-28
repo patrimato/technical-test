@@ -14,7 +14,7 @@ function ProductDetailPage() {
   const [selectedStorage, setSelectedStorage] = useState(null)
 
   useEffect(() => {
-    getProductDetail(id).then(product => {
+    getProductDetail(id).then((product) => {
       setProduct(product)
       setSelectedColor(product.options.colors[0]?.code)
       setSelectedStorage(product.options.storages[0]?.code)
@@ -25,7 +25,7 @@ function ProductDetailPage() {
     await addToCart({
       id,
       colorCode: selectedColor,
-      storageCode: selectedStorage
+      storageCode: selectedStorage,
     })
     updateCartCount()
   }
@@ -48,8 +48,12 @@ function ProductDetailPage() {
         </div>
 
         <div>
-          <h1 className="pdp-title">{product.brand} {product.model}</h1>
-          <p className={`pdp-price ${!product.price ? 'pdp-price--unavailable' : ''}`}>
+          <h1 className="pdp-title">
+            {product.brand} {product.model}
+          </h1>
+          <p
+            className={`pdp-price ${!product.price ? 'pdp-price--unavailable' : ''}`}
+          >
             {formatPrice(product.price)}
           </p>
 
@@ -66,9 +70,11 @@ function ProductDetailPage() {
                 { label: 'Dimensions', value: product.dimentions },
                 { label: 'Weight', value: product.weight },
               ]
-                .filter(spec => spec.value)
-                .map(spec => (
-                  <li key={spec.label}>{spec.label}: {spec.value}</li>
+                .filter((spec) => spec.value)
+                .map((spec) => (
+                  <li key={spec.label}>
+                    {spec.label}: {spec.value}
+                  </li>
                 ))}
             </ul>
           </div>
@@ -77,7 +83,7 @@ function ProductDetailPage() {
             <h2>Options</h2>
             <p>Storage:</p>
             <div className="pdp-option-buttons">
-              {product.options.storages.map(storage => (
+              {product.options.storages.map((storage) => (
                 <button
                   key={storage.code}
                   className={`pdp-option-btn ${selectedStorage === storage.code ? 'pdp-option-btn--selected' : ''}`}
@@ -90,7 +96,7 @@ function ProductDetailPage() {
 
             <p>Color:</p>
             <div className="pdp-option-buttons">
-              {product.options.colors.map(color => (
+              {product.options.colors.map((color) => (
                 <button
                   key={color.code}
                   className={`pdp-option-btn ${selectedColor === color.code ? 'pdp-option-btn--selected' : ''}`}
