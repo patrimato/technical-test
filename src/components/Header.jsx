@@ -6,6 +6,7 @@ function Header() {
   const location = useLocation()
   const isHome = location.pathname === '/'
   const { cartCount } = useCart()
+  const productName = location.state?.name
 
   return (
     <header className="header">
@@ -13,7 +14,7 @@ function Header() {
 
       <nav className="header__breadcrumb">
         <Link to="/">Home</Link>
-        {!isHome && <span> / Product Detail</span>}
+        {!isHome && <span> / {productName || 'Product Detail'}</span>}
       </nav>
 
       <span className="header__cart">🛒 {cartCount}</span>

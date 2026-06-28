@@ -57,7 +57,9 @@ function ProductListPage() {
 
       <div className="plp-grid">
         {paginatedProducts.map(product => (
-          <div key={product.id} className="plp-card" onClick={() => navigate(`/product/${product.id}`)}>
+          <div key={product.id} className="plp-card"
+          onClick={() => navigate(`/product/${product.id}`, { state: { name: `${product.brand} ${product.model}` } 
+          })}>
             <img src={product.imgUrl} alt={`${product.brand} ${product.model}`} />
             <p>{product.brand}</p>
             <p>{product.model}</p>
