@@ -6,7 +6,7 @@ import Header from './components/Header'
 function App() {
   return (
     <>
-      <Header cartCount={0} />
+      <Header />
       <Routes>
         <Route path="/" element={<ProductListPage />} />
         <Route path="/product/:id" element={<ProductDetailPage />} />

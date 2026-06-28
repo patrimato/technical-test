@@ -1,8 +1,10 @@
 import { Link, useLocation } from 'react-router-dom'
+import { useCart } from '../context/CartContext'
 
-function Header({ cartCount }) {
+function Header() {
   const location = useLocation()
   const isHome = location.pathname === '/'
+  const { cartCount } = useCart()
 
   return (
     <header>
