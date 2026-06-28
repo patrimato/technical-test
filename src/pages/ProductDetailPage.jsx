@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { getProductDetail, addToCart } from '../api/productApi'
 import { useCart } from '../context/CartContext'
 import { formatPrice } from '../utils/formatPrice'
@@ -7,18 +7,22 @@ import './ProductDetailPage.css'
 
 function ProductDetailPage() {
   const { id } = useParams()
-  const navigate = useNavigate()
   const { updateCartCount } = useCart()
   const [product, setProduct] = useState(null)
   const [selectedColor, setSelectedColor] = useState(null)
   const [selectedStorage, setSelectedStorage] = useState(null)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    getProductDetail(id).then((product) => {
-      setProduct(product)
-      setSelectedColor(product.options.colors[0]?.code)
-      setSelectedStorage(product.options.storages[0]?.code)
-    })
+    getProductDetail(id)
+      .then((product) => {
+        setProduct(product)
+        setSelectedColor(product.options.colors[0]?.code)
+        setSelectedStorage(product.options.storages[0]?.code)
+      })
+      .catch(() => {
+        setError('Could not load product. Please try again.')
+      })
   }, [id])
 
   const handleAddToCart = async () => {
@@ -30,13 +34,14 @@ function ProductDetailPage() {
     updateCartCount()
   }
 
-  if (!product) return <p>Loading...</p>
+  if (error) return <p className="plp-status plp-status--error">{error}</p>
+  if (!product) return <p className="plp-status">Loading...</p>
 
   return (
     <div className="pdp-container">
-      <button className="pdp-back" onClick={() => navigate('/')}>
+      <Link to="/" className="pdp-back">
         ← Back to list
-      </button>
+      </Link>
 
       <div className="pdp-layout">
         <div>
