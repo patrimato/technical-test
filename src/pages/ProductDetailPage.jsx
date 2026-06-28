@@ -49,7 +49,7 @@ function ProductDetailPage() {
         <div>
           <h1 className="pdp-title">{product.brand} {product.model}</h1>
           <p className={`pdp-price ${!product.price ? 'pdp-price--unavailable' : ''}`}>
-            {product.price ? `${product.price} €` : 'Price not available'}
+            {product.price ? `${Number(product.price)} €` : 'Price not available'}
           </p>
 
           <div className="pdp-specs">
