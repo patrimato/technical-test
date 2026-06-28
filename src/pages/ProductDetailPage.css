@@ -146,6 +146,13 @@
   background: var(--accent-dark);
 }
 
+.pdp-added-feedback {
+  color: #38a169;
+  font-size: 14px;
+  margin-top: 8px;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .pdp-layout {
     grid-template-columns: 1fr;

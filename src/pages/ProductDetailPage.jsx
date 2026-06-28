@@ -11,6 +11,7 @@ function ProductDetailPage() {
   const [product, setProduct] = useState(null)
   const [selectedColor, setSelectedColor] = useState(null)
   const [selectedStorage, setSelectedStorage] = useState(null)
+  const [addedToCart, setAddedToCart] = useState(false)
   const [error, setError] = useState(null)
 
   useEffect(() => {
@@ -32,6 +33,8 @@ function ProductDetailPage() {
       storageCode: selectedStorage,
     })
     updateCartCount()
+    setAddedToCart(true)
+    setTimeout(() => setAddedToCart(false), 2000)
   }
 
   if (error) return <p className="plp-status plp-status--error">{error}</p>
@@ -116,6 +119,9 @@ function ProductDetailPage() {
           <button className="pdp-add-btn" onClick={handleAddToCart}>
             Add to cart
           </button>
+          {addedToCart && (
+            <p className="pdp-added-feedback">✓ Product added to cart</p>
+          )}
         </div>
       </div>
     </div>
