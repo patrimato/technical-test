@@ -56,78 +56,90 @@ function ProductListPage() {
         onChange={handleSearch}
       />
 
-      <div className="plp-grid">
-        {paginatedProducts.map((product) => (
-          <div
-            key={product.id}
-            className="plp-card"
-            onClick={() =>
-              navigate(`/product/${product.id}`, {
-                state: { name: `${product.brand} ${product.model}` },
-              })
-            }
-          >
-            <img
-              src={product.imgUrl}
-              alt={`${product.brand} ${product.model}`}
-            />
-            <p>{product.brand}</p>
-            <p>{product.model}</p>
-            <p>{formatPrice(product.price)}</p>
+      {filteredProducts.length === 0 ? (
+        <p className="plp-status">No products found for "{search}"</p>
+      ) : (
+        <>
+          <div className="plp-grid">
+            {paginatedProducts.map((product) => (
+              <div
+                key={product.id}
+                className="plp-card"
+                onClick={() =>
+                  navigate(`/product/${product.id}`, {
+                    state: { name: `${product.brand} ${product.model}` },
+                  })
+                }
+              >
+                <img
+                  src={product.imgUrl}
+                  alt={`${product.brand} ${product.model}`}
+                />
+                <p>{product.brand}</p>
+                <p>{product.model}</p>
+                <p>{formatPrice(product.price)}</p>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      <div className="plp-pagination">
-        <button
-          onClick={() => setCurrentPage((prev) => prev - 1)}
-          disabled={currentPage === 1}
-        >
-          ←
-        </button>
+          {totalPages > 1 && (
+            <div className="plp-pagination">
+              <button
+                onClick={() => setCurrentPage((prev) => prev - 1)}
+                disabled={currentPage === 1}
+              >
+                ←
+              </button>
 
-        <button
-          onClick={() => setCurrentPage(1)}
-          className={currentPage === 1 ? 'plp-pagination__active' : ''}
-        >
-          1
-        </button>
+              <button
+                onClick={() => setCurrentPage(1)}
+                className={currentPage === 1 ? 'plp-pagination__active' : ''}
+              >
+                1
+              </button>
 
-        {currentPage > 3 && <span>...</span>}
+              {currentPage > 3 && <span>...</span>}
 
-        {Array.from({ length: totalPages }, (_, i) => i + 1)
-          .filter(
-            (page) =>
-              page !== 1 &&
-              page !== totalPages &&
-              Math.abs(page - currentPage) <= 1
-          )
-          .map((page) => (
-            <button
-              key={page}
-              onClick={() => setCurrentPage(page)}
-              className={currentPage === page ? 'plp-pagination__active' : ''}
-            >
-              {page}
-            </button>
-          ))}
+              {Array.from({ length: totalPages }, (_, i) => i + 1)
+                .filter(
+                  (page) =>
+                    page !== 1 &&
+                    page !== totalPages &&
+                    Math.abs(page - currentPage) <= 1
+                )
+                .map((page) => (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={
+                      currentPage === page ? 'plp-pagination__active' : ''
+                    }
+                  >
+                    {page}
+                  </button>
+                ))}
 
-        {currentPage < totalPages - 2 && <span>...</span>}
+              {currentPage < totalPages - 2 && <span>...</span>}
 
-        <button
-          onClick={() => setCurrentPage(totalPages)}
-          className={currentPage === totalPages ? 'plp-pagination__active' : ''}
-        >
-          {totalPages}
-        </button>
+              <button
+                onClick={() => setCurrentPage(totalPages)}
+                className={
+                  currentPage === totalPages ? 'plp-pagination__active' : ''
+                }
+              >
+                {totalPages}
+              </button>
 
-        <button
-          onClick={() => setCurrentPage((prev) => prev + 1)}
-          disabled={currentPage === totalPages}
-        >
-          →
-        </button>
-      </div>
+              <button
+                onClick={() => setCurrentPage((prev) => prev + 1)}
+                disabled={currentPage === totalPages}
+              >
+                →
+              </button>
+            </div>
+          )}
+        </>
+      )}
     </div>
   )
 }
